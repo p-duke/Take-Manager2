@@ -1,0 +1,58 @@
+movies = {
+    'Inception' => 4,
+    'Interstellar' => 5,
+    'The Martian' => 3,
+    'Prometheus' => 4
+}
+
+puts "Would you like to add, update, display, or delete a movie?"
+choice = gets.chomp
+
+case choice
+when "add"
+    puts "Add a title of your favorite movie"
+    title = gets.chomp
+    title = title.to_sym
+    puts "What would you rate that movie?"
+    rating = gets.chomp
+    rating = rating.to_i
+    if movies[title.to_sym] = nil 
+        then movies[title] = rating
+        puts "Great! That movie has been added"
+    else
+        puts "That movie is already there!"
+end
+
+
+when "update"
+    puts "Please enter a title to be updated"
+    title = gets.chomp
+    title = title.to_sym
+    if movies[title.to_sym] = nil
+        then puts "Oh sorry that movie isn't included yet."
+    else
+        puts "Please put the new rating"
+        rating = gets.chomp
+        rating = rating.to_i
+        movies[title] = rating
+        puts "Its been updated!"
+    end    
+    
+when "display"
+    movies.each do |movie, rating|
+        puts "#{movie}: #{rating}"
+    end
+
+when "delete"
+    puts "What title would you like to delete?"
+    title = gets.chomp
+    title.to_sym
+    if movies[title] == nil
+        puts "Sorry but that movie isn't in the list."
+    else 
+        movies.delete(title)
+        puts "It's been removed."
+    end
+else
+    puts "Error!"
+end
